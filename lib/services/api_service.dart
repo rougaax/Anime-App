@@ -2,14 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:anime_app/model/anime_model.dart';
 
 class ApiService {
-  static const String baseUrl = 'https://api.jikan.moe/v4/anime';
+  static const String baseUrl = 'https://api.jikan.moe/v4/top/anime';
   final Dio _dio = Dio();
 
-  Future<List<Anime>> fetchAnimeList({int page = 1, int limit = 25}) async {
+  Future<List<Anime>> fetchAnimeList({int page = 1}) async {
     try {
       final response = await _dio.get(baseUrl, queryParameters: {
         'page': page,
-        'limit': limit,
       });
 
       if (response.statusCode == 200) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:anime_app/screens/anime_list_screen.dart';
 import 'package:get/get.dart';
+import 'package:anime_app/screens/anime_list_screen.dart';
+import 'package:anime_app/bindings/anime_binding.dart';
+import 'package:anime_app/screens/anime_detail_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +18,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  AnimeListScreen(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => AnimeListScreen(),
+          binding: AnimeBinding(),
+        ),
+        GetPage(
+          name: '/details',
+          page: () => AnimeDetailScreen(anime: Get.arguments),
+        ),
+      ],
       debugShowCheckedModeBanner: false,
     );
   }

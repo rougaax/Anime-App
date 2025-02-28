@@ -4,7 +4,7 @@ import 'package:anime_app/controllers/anime_controller.dart';
 import 'package:anime_app/screens/anime_detail_screen.dart';
 
 class AnimeListScreen extends StatelessWidget {
-  final AnimeController controller = Get.find();
+  final AnimeController controller = Get.put(AnimeController());
 
   @override
   Widget build(BuildContext context) {

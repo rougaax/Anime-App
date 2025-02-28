@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:anime_app/screens/anime_list_screen.dart';
-import 'package:anime_app/bindings/anime_binding.dart';
 import 'package:anime_app/screens/anime_detail_screen.dart';
+import 'package:anime_app/services/api_service.dart';
 
 void main() {
+  Get.put(ApiService()); // Inisialisasi ApiService
   runApp(const MyApp());
 }
 
@@ -20,15 +21,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       getPages: [
-        GetPage(
-          name: '/',
-          page: () => AnimeListScreen(),
-          binding: AnimeBinding(),
-        ),
-        GetPage(
-          name: '/details',
-          page: () => AnimeDetailScreen(anime: Get.arguments),
-        ),
+        GetPage(name: '/', page: () => AnimeListScreen()),
+        GetPage(name: '/details', page: () => AnimeDetailScreen(anime: Get.arguments)),
       ],
       debugShowCheckedModeBanner: false,
     );

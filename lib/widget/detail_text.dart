@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
-class DetailText extends StatelessWidget {
+class DetailText extends StatefulWidget {
   final String label;
   final String value;
 
   const DetailText({super.key, required this.label, required this.value});
 
+  @override
+  State<DetailText> createState() => _DetailTextState();
+}
+
+class _DetailTextState extends State<DetailText> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,7 +19,7 @@ class DetailText extends StatelessWidget {
         text: TextSpan(
           children: [
             TextSpan(
-              text: '$label ',
+              text: '${widget.label} ',
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -22,7 +27,7 @@ class DetailText extends StatelessWidget {
               ),
             ),
             TextSpan(
-              text: value,
+              text: widget.value,
               style: const TextStyle(
                 fontSize: 16,
                 fontStyle: FontStyle.italic,

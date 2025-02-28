@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:anime_app/model/anime_model.dart';
 import 'package:anime_app/widget/detail_text.dart';
 
-class AnimeDetailScreen extends StatelessWidget {
+class AnimeDetailScreen extends StatefulWidget {
   final Anime anime;
 
   const AnimeDetailScreen({super.key, required this.anime});
 
+  @override
+  State<AnimeDetailScreen> createState() => _AnimeDetailScreenState();
+}
+
+class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,9 +22,9 @@ class AnimeDetailScreen extends StatelessWidget {
             Stack(
               children: [
                 Hero(
-                  tag: 'anime_image_${anime.malId}',
+                  tag: 'anime_image_${widget.anime.malId}',
                   child: Image.network(
-                    anime.imageUrl,
+                    widget.anime.imageUrl,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -43,7 +48,7 @@ class AnimeDetailScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                anime.title,
+                widget.anime.title,
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -55,32 +60,38 @@ class AnimeDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  DetailText(label: 'Type:', value: anime.type),
+                  DetailText(label: 'Type:', value: widget.anime.type),
                   DetailText(
                     label: 'Episodes:',
-                    value: anime.episodes.toString(),
+                    value: widget.anime.episodes.toString(),
                   ),
-                  DetailText(label: 'Duration:', value: anime.duration),
-                  DetailText(label: 'Status:', value: anime.status),
-                  DetailText(label: 'Aired:', value: anime.aired),
+                  DetailText(label: 'Duration:', value: widget.anime.duration),
+                  DetailText(label: 'Status:', value: widget.anime.status),
+                  DetailText(label: 'Aired:', value: widget.anime.aired),
                   DetailText(
                     label: 'Score:',
-                    value: '${anime.score} (by ${anime.scoredBy} users)',
+                    value: '${widget.anime.score} (by ${widget.anime.scoredBy} users)',
                   ),
-                  DetailText(label: 'Rating:', value: anime.rating),
-                  DetailText(label: 'Rank:', value: anime.rank.toString()),
+                  DetailText(label: 'Rating:', value: widget.anime.rating),
+                  DetailText(label: 'Rank:', value: widget.anime.rank.toString()),
                   DetailText(
                     label: 'Popularity:',
-                    value: anime.popularity.toString(),
+                    value: widget.anime.popularity.toString(),
                   ),
-                  DetailText(label: 'Genres:', value: anime.genres.join(", ")),
+                  DetailText(
+                    label: 'Genres:',
+                    value: widget.anime.genres.join(", "),
+                  ),
                   const SizedBox(height: 16.0),
                   const Text(
                     'Synopsis:',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8.0),
-                  Text(anime.synopsis, style: const TextStyle(fontSize: 16)),
+                  Text(
+                    widget.anime.synopsis,
+                    style: const TextStyle(fontSize: 16),
+                  ),
                 ],
               ),
             ),

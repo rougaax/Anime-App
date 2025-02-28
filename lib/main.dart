@@ -5,19 +5,35 @@ import 'package:anime_app/screens/anime_detail_screen.dart';
 import 'package:anime_app/services/api_service.dart';
 
 void main() {
-  Get.put(ApiService()); // Inisialisasi ApiService
+  Get.put(ApiService());
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Jikan Anime App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          iconTheme: IconThemeData(color: Colors.black),
+          elevation: 0,
+        ),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: Colors.black,
+          secondary: Colors.white,
+        ),
       ),
       initialRoute: '/',
       getPages: [
